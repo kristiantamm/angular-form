@@ -1,0 +1,57 @@
+<form [formGroup]="form" class="form-page">
+    <div class="form-message">
+        <div class="form-title">
+            <h2>Application form</h2>
+        </div>
+        <div class="animate pop">
+            <h3>
+                <app-message *ngIf="submitted && form.invalid" 
+                [text] = "'Please fill in all fields correctly'"
+                type="error">
+                </app-message>
+                <app-message *ngIf="submitted && form.valid" 
+                [text] = "'Form submitted successfully!'"
+                type="success">
+                </app-message>
+                <app-message *ngIf="reset"
+                [text] = "'Form has been reset.'"
+                type="info">
+                </app-message>
+            </h3>
+        </div>
+        <div class="form-group">
+            <input type="text" id="name" formControlName="name" placeholder="Name" class="form-control"/>
+            <div *ngIf="form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched || submitted)">
+                <div *ngIf="form.get('name')?.errors?.['required']">Name is required</div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="text" id="surname" formControlName="surname" placeholder="Surname" class="form-control"/>
+            <div *ngIf="form.get('surname')?.invalid && (form.get('surname')?.dirty || form.get('surname')?.touched || submitted)">
+                <div *ngIf="form.get('surname')?.errors?.['required']">Surname is required</div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="email" id="email" formControlName="email" placeholder="Email" class="form-control"/>
+            <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched || submitted)">
+                <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+                <div *ngIf="form.get('email')?.errors?.['email']">Invalid email format.</div>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="text" id="workExperience" formControlName="workExperience" placeholder="Work experience (M)" class="form-control"/>
+            <br>
+            <div *ngIf="form.get('workExperience')?.invalid && (form.get('workExperience')?.dirty || form.get('workExperience')?.touched || submitted)">
+                <div *ngIf="form.get('workExperience')?.errors?.['required']">Work experience is required.</div>
+                <div *ngIf="form.get('workExperience')?.errors?.['validNumeric']">Must be a valid number.</div>
+                <div *ngIf="form.get('workExperience')?.errors?.['validDecimal']">Must have one decimal place.</div>
+            </div>
+        </div>
+        <button (click)="submitForm()" class="btn btn-primary btn-lg">Submit</button>
+        <br>
+        <button (click)="resetForm()" class="btn btn-default btn-sm">Reset</button>
+    </div>
+</form>

@@ -1,0 +1,22 @@
+.form-page{
+    display: flex;
+    justify-content: center;
+}
+.form-title{
+    background-color: grey;
+    width: 100%;
+    border-radius: 20px 20px 0px 0px;
+    text-align: center;
+    color: white;
+}
+.form-message{
+    margin-top: 5vh;
+    background-color: lightgrey;
+    padding-bottom: 5vh;
+    width: 35%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    box-shadow: 10px 10px 10px;
+}
